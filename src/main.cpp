@@ -45,7 +45,7 @@ int neuronal_threat(double impact, double severity, double probability) {
     std::vector<std::size_t> conf = {3, 5, 1}; // Configuration
     double bias = 1.0; // Define bias
     //perceptron_multilayer mp_network(&conf, bias); // Include bias in constructor
-    perceptron_multilayer mp_network(reinterpret_cast<std::vector<std::size_t>*>(conf), bias);
+    perceptron_multilayer mp_network(reinterpret_cast<std::vector<std::vector<std::size_t>>*>(conf), bias);
 
     std::vector<double> data_threat = {impact, severity, probability};
     std::vector<double> outputs = mp_network.execute(data_threat);
