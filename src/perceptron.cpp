@@ -7,7 +7,7 @@ double frand() {
 }
 
 
-perceptron::perceptron(std::size_t n_inputs, double bias=1.0){
+perceptron::perceptron(std::size_t n_inputs, const double bias=1.0){
     /*bias = frand();
     secuencie2.reserve(n_inputs);
     for (std::size_t i = 0; i < n_inputs; i++) {
