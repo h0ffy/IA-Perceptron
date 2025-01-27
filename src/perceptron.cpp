@@ -17,6 +17,8 @@ perceptron::perceptron(std::size_t n_inputs, double bias=1.0){
     std::generate(weights.begin(),weights.end(),frand)
 }
 
+perceptron::~perceptron(){}
+    
 
 void perceptron::set_weights(std::vector<double> initial_weight) {
     weights = initial_weight;
@@ -72,6 +74,8 @@ perceptron_multilayer::perceptron_multilayer(std::vector<std::size_t> layers, do
 
     }
 }
+
+perceptron_multilayer::~perceptron_multilayer(){}
 
 /**
 * @brief Establece pesos 
