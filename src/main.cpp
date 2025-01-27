@@ -4,6 +4,7 @@
 #include <string>
 #include <ctime>
 
+using namespace std;
 
 int main(int argc, char *argv[]) {
     //neuronal_and();
