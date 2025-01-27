@@ -64,7 +64,7 @@ perceptron_multilayer::perceptron_multilayer(std::vector<std::size_t> layers, do
     this->bias = bias;
     for(std::size_t i=0; i<layers.size(); i++) {
         values.push_back(std::vector<double>(layers[i], 0.0));
-        network.push_bash(std::vector<double>(layers[i],0.0));
+        network.push_back(std::vector<double>(layers[i],0.0));
 
         if (i > 0) {
             for(std::size_t j1=0; j1<layers[i]; j1++) {
