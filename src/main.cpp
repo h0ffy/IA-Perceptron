@@ -10,16 +10,13 @@ using namespace std;
 int neuronal_threat(double impact, double severity, double probability);
 
 int main(int argc, char *argv[]) {
-    //neuronal_and();
-    //neuronal_or();
-    //neuronal_xor();
     double impact = 0.0;
     double severity = 0.0;
     double probability = 0.0;
-    
+
     if(argc != 4) {
-        std::cerr << "Invalid arguments: paerceptron <impact> <severity> <probability>" << std::endl;
-        std::cerr << "Invalid arguments: paerceptron 0.4 0.5 0.7" << std::endl;
+        std::cerr << "Invalid arguments: perceptron <impact> <severity> <probability>" << std::endl;
+        std::cerr << "Invalid arguments: perceptron 0.4 0.5 0.7" << std::endl;
         return 1;
     }
 
@@ -45,19 +42,11 @@ int neuronal_threat(double impact, double severity, double probability) {
     srand(time(NULL));
     rand();
 
-    std::vector<std::size_t> conf;
-    conf.push_back(3); // 3 entradas (impact,probability,severity)
-    conf.push_back(5); // 5 neuronas en la capa oculta que seran las que daran "inteligencia"
-    conf.push_back(1); // posbilidad si 1 o 0 no y 0.01 -> 1.00 gradualmente de no a si
+    std::vector<std::size_t> conf = {3, 5, 1}; // Configuration
+    double bias = 1.0; // Define bias
+    perceptron_multilayer mp_network(conf, bias); // Include bias in constructor
 
-    std::vector<std::vector<std::vector<double>>> initial_weights; // pesos iniciales
-    std::vector<std::vector<double>> hide_layer[5]; // capa oculta    
-    perceptron_multilayer mp_network(conf);
-    std::vector<double> data_threat;
-    data_threat.push_back(impact); // 0.4 impacto
-    data_threat.push_back(severity); // 0.4 severidad o dificultad
-    data_threat.push_back(probability); // 0.8 probabilidad
-    
+    std::vector<double> data_threat = {impact, severity, probability};
     std::vector<double> outputs = mp_network.execute(data_threat);
 
     if(outputs[0] >= 0.5)
