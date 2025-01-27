@@ -34,7 +34,7 @@ double perceptron::execute(std::vector<double> inputs_data) {
     weights.push_back(bias);
     double ponderation = std::inner_product(
         inputs_data.begin(),
-        inputs_dats.end(),
+        inputs_data.end(),
         weights.begin(),
         ponderation 
     )
