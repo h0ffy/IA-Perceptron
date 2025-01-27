@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <string>
 #include <ctime>
+#include <vector>
 
 using namespace std;
 
@@ -26,13 +27,13 @@ int main(int argc, char *argv[]) {
     }
 
     try {
-        double impact = std::stod(argv[1]);
-        double severity = std::stod(argv[2]);
-        double probability = std::stod(argv[3]);
+        impact = std::stod(argv[1]);
+        severity = std::stod(argv[2]);
+        probability = std::stod(argv[3]);
         std::cout << "Impact: " << impact << std::endl;
         std::cout << "Severity: " << severity << std::endl;
         std::cout << "Probability: " << probability << std::endl;
-    } catch (...) { // Fix catch block syntax
+    } catch (...) {
         std::cerr << "Error in arguments" << std::endl;
         return 0;
     }
@@ -43,7 +44,6 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-// Add return type and fix the function name
 int neuronal_threat(double impact, double severity, double probability) {
     srand(time(NULL));
     rand();
@@ -51,7 +51,7 @@ int neuronal_threat(double impact, double severity, double probability) {
     std::vector<std::size_t> conf;
     conf.push_back(3); // 3 entradas (impact,probability,severity)
     conf.push_back(5); // 5 neuronas en la capa oculta que seran las que daran "inteligencia"
-    conf.push_back(1); // posbilidad si 1 o 0 no y 0.01 -> 1.00  gradualmente de no a si
+    conf.push_back(1); // posbilidad si 1 o 0 no y 0.01 -> 1.00 gradualmente de no a si
 
     std::vector<std::vector<std::vector<double>>> initial_weights; // pesos iniciales
     std::vector<std::vector<double>> hide_layer[5]; // capa oculta    
@@ -68,74 +68,43 @@ int neuronal_threat(double impact, double severity, double probability) {
     else
         std::cout << "Bajo nivel de riesgo de pwn3d" << std::endl;
 
-    return 0; // Ensure every non-void function returns a value
+    return 0;
 }
-
 
 int neuronal_xor() {
     srand(time(NULL));
-    std::vector<std::size_t> conf; 
-        conf.push_back(2);  // in layer 1
-        conf.push_back(2);  // in layer 2
-        conf.push_back(1);  // sigmode value
-    perceptron_multilayer mp(conf); // AND, OR, NOT
+    std::vector<std::size_t> conf = {2, 2, 1};
+    perceptron_multilayer mp(conf, 1.0);
 
-    std::vector<std::vector<std::vector<double>>> initial_weights; // pesos iniciales
-    std::vector<std::vector<double>> hide_layer; // capa oculta
+    std::vector<std::vector<std::vector<double>>> initial_weights;
+    std::vector<std::vector<double>> hide_layer;
 
-    std::vector<double> cell1;  // neurona1
-        cell1.push_back(-10);
-        cell1.push_back(-10);
-        cell1.push_back(15);
-
-    std::vector<double> cell2;  // neurona2
-        cell2.push_back(15);
-        cell2.push_back(15);
-        cell2.push_back(-10);
-
+    std::vector<double> cell1 = {-10, -10, 15};
+    std::vector<double> cell2 = {15, 15, -10};
 
     hide_layer.push_back(cell1);
     hide_layer.push_back(cell2);
 
-    std::vector<std::vector<double>> outputs_layer; // capa de salida
-    std::vector<double> outputs_cell;               // neurona de salida
-        outputs_cell.push_back(10);
-        outputs_cell.push_back(10);
-        outputs_cell.push_back(-15);
-    
+    std::vector<std::vector<double>> outputs_layer;
+    std::vector<double> outputs_cell = {10, 10, -15};
+
     outputs_layer.push_back(outputs_cell);
     initial_weights.push_back(hide_layer);
     initial_weights.push_back(outputs_layer);
 
-
-    std::vector<double> test1;
-    test1.push_back(0);
-    test1.push_back(0);
+    std::vector<double> test1 = {0, 0};
     std::cout << "0 XOR 0 : " << mp.execute(test1)[0] << std::endl;
 
-    std::vector<double> test2;
-    test2.push_back(0);
-    test2.push_back(1);
+    std::vector<double> test2 = {0, 1};
     std::cout << "0 XOR 1 : " << mp.execute(test2)[0] << std::endl;
 
-
-    std::vector<double> test3;
-    test3.push_back(1);
-    test3.push_back(0);
+    std::vector<double> test3 = {1, 0};
     std::cout << "1 XOR 0 : " << mp.execute(test3)[0] << std::endl;
 
-
-    
-    std::vector<double> test4;
-    test4.push_back(1);
-    test4.push_back(1);
+    std::vector<double> test4 = {1, 1};
     std::cout << "1 XOR 1 : " << mp.execute(test4)[0] << std::endl;
 
-
-    return(0);
-
-
-
+    return 0;
 }
 
 int neuronal_or() {
@@ -144,39 +113,22 @@ int neuronal_or() {
 
     perceptron p(2);
 
-    std::vector<double>initial_weights;
-    initial_weights.push_back(10); // value
-    initial_weights.push_back(10); // value
-    initial_weights.push_back(-5); // only change this value (ES: el valor de sesgo es el unico cambio entre neuronal_or y neuronal_and)
+    std::vector<double> initial_weights = {10, 10, -5};
     p.set_weights(initial_weights);
 
-
-    std::vector<double> mix1;
-    mix1.push_back(0);
-    mix1.push_back(0);
+    std::vector<double> mix1 = {0, 0};
     std::cout << "0 OR 0 : " << p.execute(mix1) << std::endl;
 
-    std::vector<double> mix2;
-    mix2.push_back(1);
-    mix2.push_back(0);
+    std::vector<double> mix2 = {1, 0};
     std::cout << "1 OR 0 : " << p.execute(mix2) << std::endl;
 
-    std::vector<double> mix3;
-    mix2.push_back(0);
-    mix2.push_back(1);
+    std::vector<double> mix3 = {0, 1};
     std::cout << "0 OR 1 : " << p.execute(mix3) << std::endl;
 
-
-    std::vector<double> mix4;
-    mix2.push_back(1);
-    mix2.push_back(1);
+    std::vector<double> mix4 = {1, 1};
     std::cout << "1 OR 1 : " << p.execute(mix4) << std::endl;
 
-
-    return(0x00);
-    
-
-
+    return 0x00;
 }
 
 int neuronal_and() {
@@ -185,35 +137,20 @@ int neuronal_and() {
 
     perceptron p(2);
 
-    std::vector<double>initial_weights;
-    initial_weights.push_back(10);   // valo entrada
-    initial_weights.push_back(10);   // valor entrada
-    initial_weights.push_back(-15);  // only change this value (ES: el valor de sesgo es el unico cambio entre neuronal_or y neuronal_and)
-
+    std::vector<double> initial_weights = {10, 10, -15};
     p.set_weights(initial_weights);
 
-
-    std::vector<double> mix1;
-    mix1.push_back(0);
-    mix1.push_back(0);
+    std::vector<double> mix1 = {0, 0};
     std::cout << "0 AND 0 : " << p.execute(mix1) << std::endl;
 
-    std::vector<double> mix2;
-    mix2.push_back(1);
-    mix2.push_back(0);
+    std::vector<double> mix2 = {1, 0};
     std::cout << "1 AND 0 : " << p.execute(mix2) << std::endl;
 
-    std::vector<double> mix3;
-    mix2.push_back(0);
-    mix2.push_back(1);
+    std::vector<double> mix3 = {0, 1};
     std::cout << "0 AND 1 : " << p.execute(mix3) << std::endl;
 
-
-    std::vector<double> mix4;
-    mix2.push_back(1);
-    mix2.push_back(1);
+    std::vector<double> mix4 = {1, 1};
     std::cout << "1 AND 1 : " << p.execute(mix4) << std::endl;
 
-    return(0x00);
-    
+    return 0x00;
 }
