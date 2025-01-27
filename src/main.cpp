@@ -129,7 +129,7 @@ int neuronal_xor() {
     std::vector<double> test4;
     test4.push_back(1);
     test4.push_back(1);
-    std::cout << "1 XOR 1 : " << p.execute(test4)[0] << std::endl;
+    std::cout << "1 XOR 1 : " << mp.execute(test4)[0] << std::endl;
 
 
     return(0);
