@@ -13,7 +13,7 @@ perceptron::perceptron(std::size_t n_inputs, const double bias=1.0){
     for (std::size_t i = 0; i < n_inputs; i++) {
         secuencie2.push_back(frand());
     }*/
-    wieghts.resize(n_inputs+1);
+    weights.resize(n_inputs+1);
     std::generate(weights.begin(),weights.end(),frand)
 }
 
@@ -98,8 +98,8 @@ void perceptron_multilayer::set_weights(std::vector<std::vector<std::vector<doub
     @brief Esta funcion de ejecucion es la que ejecuta y calcula los pesos
     @param weights as Vector double con los valores
 */
-std::vector<double> perceptron::execute(std::vector<double> wieghts) {
-    values[0] = wieghts;
+std::vector<double> perceptron::execute(std::vector<double> weights) {
+    values[0] = weights;
     for(std::size_t i=1; i<network.size();i++) {
         for(std::size_t j2=0; j2<layers[i];j2++) {
             values[i][j] = network[i][j].execute(values[i-1]);
