@@ -14,7 +14,7 @@ perceptron::perceptron(std::size_t n_inputs, const double bias=1.0){
         secuencie2.push_back(frand());
     }*/
     weights.resize(n_inputs+1);
-    std::generate(weights.begin(),weights.end(),frand)
+    std::generator(weights.begin(),weights.end(),frand)
 }
 
 perceptron::~perceptron(){}
