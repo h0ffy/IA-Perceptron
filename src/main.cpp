@@ -136,7 +136,7 @@ int neuronal_or() {
 
     perceptron p(2);
 
-    std::vector<double>inital_weights;
+    std::vector<double>initial_weights;
     initial_weights.push_back(10); // value
     initial_weights.push_back(10); // value
     initial_weights.push_back(-5); // only change this value (ES: el valor de sesgo es el unico cambio entre neuronal_or y neuronal_and)
@@ -177,7 +177,7 @@ int neuronal_and() {
 
     perceptron p(2);
 
-    std::vector<double>inital_weights;
+    std::vector<double>initial_weights;
     initial_weights.push_back(10);   // valo entrada
     initial_weights.push_back(10);   // valor entrada
     initial_weights.push_back(-15);  // only change this value (ES: el valor de sesgo es el unico cambio entre neuronal_or y neuronal_and)
