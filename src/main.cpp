@@ -8,9 +8,6 @@
 using namespace std;
 
 int neuronal_threat(double impact, double severity, double probability);
-int neuronal_or();
-int neuronal_and();
-int neuronal_xor();
 
 int main(int argc, char *argv[]) {
     //neuronal_and();
