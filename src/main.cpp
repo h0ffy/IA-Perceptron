@@ -12,7 +12,10 @@ int main(int argc, char *argv[]) {
     //neuronal_and();
     //neuronal_or();
     //neuronal_xor();
-
+    double impact = 0.0;
+    double severity = 0.0;
+    double probability = 0.0;
+    
     if(argc != 4) {
         std::cerr << "Invalid arguments: paerceptron <impact> <severity> <probability>" << std::endl;
         std::cerr << "Invalid arguments: paerceptron 0.4 0.5 0.7" << std::endl;
