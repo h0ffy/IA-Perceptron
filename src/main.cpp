@@ -106,25 +106,25 @@ int neuronal_xor() {
     std::vector<double> test1;
     test1.push_back(0);
     test1.push_back(0);
-    std::count << "0 XOR 0 : " << mp.execute(test1)[0] << std::endl;
+    std::cout << "0 XOR 0 : " << mp.execute(test1)[0] << std::endl;
 
     std::vector<double> test2;
     test2.push_back(0);
     test2.push_back(1);
-    std::count << "0 XOR 1 : " << mp.execute(test2)[0] << std::endl;
+    std::cout << "0 XOR 1 : " << mp.execute(test2)[0] << std::endl;
 
 
     std::vector<double> test3;
     test3.push_back(1);
     test3.push_back(0);
-    std::count << "1 XOR 0 : " << mp.execute(test3)[0] << std::endl;
+    std::cout << "1 XOR 0 : " << mp.execute(test3)[0] << std::endl;
 
 
     
     std::vector<double> test4;
     test4.push_back(1);
     test4.push_back(1);
-    std::count << "1 XOR 1 : " << p.execute(test4)[0] << std::endl;
+    std::cout << "1 XOR 1 : " << p.execute(test4)[0] << std::endl;
 
 
     return(0);
@@ -149,23 +149,23 @@ int neuronal_or() {
     std::vector<double> mix1;
     mix1.push_back(0);
     mix1.push_back(0);
-    std::count << "0 OR 0 : " << p.execute(mix1) << std::endl;
+    std::cout << "0 OR 0 : " << p.execute(mix1) << std::endl;
 
     std::vector<double> mix2;
     mix2.push_back(1);
     mix2.push_back(0);
-    std::count << "1 OR 0 : " << p.execute(mix2) << std::endl;
+    std::cout << "1 OR 0 : " << p.execute(mix2) << std::endl;
 
     std::vector<double> mix3;
     mix2.push_back(0);
     mix2.push_back(1);
-    std::count << "0 OR 1 : " << p.execute(mix3) << std::endl;
+    std::cout << "0 OR 1 : " << p.execute(mix3) << std::endl;
 
 
     std::vector<double> mix4;
     mix2.push_back(1);
     mix2.push_back(1);
-    std::count << "1 OR 1 : " << p.execute(mix4) << std::endl;
+    std::cout << "1 OR 1 : " << p.execute(mix4) << std::endl;
 
 
     return(0x00);
@@ -191,23 +191,23 @@ int neuronal_and() {
     std::vector<double> mix1;
     mix1.push_back(0);
     mix1.push_back(0);
-    std::count << "0 AND 0 : " << p.execute(mix1) << std::endl;
+    std::cout << "0 AND 0 : " << p.execute(mix1) << std::endl;
 
     std::vector<double> mix2;
     mix2.push_back(1);
     mix2.push_back(0);
-    std::count << "1 AND 0 : " << p.execute(mix2) << std::endl;
+    std::cout << "1 AND 0 : " << p.execute(mix2) << std::endl;
 
     std::vector<double> mix3;
     mix2.push_back(0);
     mix2.push_back(1);
-    std::count << "0 AND 1 : " << p.execute(mix3) << std::endl;
+    std::cout << "0 AND 1 : " << p.execute(mix3) << std::endl;
 
 
     std::vector<double> mix4;
     mix2.push_back(1);
     mix2.push_back(1);
-    std::count << "1 AND 1 : " << p.execute(mix4) << std::endl;
+    std::cout << "1 AND 1 : " << p.execute(mix4) << std::endl;
 
     return(0x00);
     
