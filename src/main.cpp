@@ -70,7 +70,7 @@ int neuronal_threat(double impact, double severity, double probability) {
 
     return 0;
 }
-
+/*
 int neuronal_xor() {
     srand(time(NULL));
     std::vector<std::size_t> conf = {2, 2, 1};
@@ -154,3 +154,5 @@ int neuronal_and() {
 
     return 0x00;
 }
+
+*/
