@@ -50,7 +50,7 @@ double perceptron::execute(std::vector<double> inputs_data) {
     @return valor tras el calculo sigmoide
 */
 double perceptron::sigmoide(double x) {
-    return 1.0 / (1.0 + exp(-x));
+    return 1.0 / (1.0 + std::exp(-x));
 }
 
 
