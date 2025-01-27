@@ -119,7 +119,7 @@ std::vector<double> perceptron::execute(std::vector<double> weights) {
 */
 double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y) {
     std::vector<double> error;
-    dousble eta = 0.0;
+    double eta = 0.0;
     double qerror = 0.0;
     std::vector<double> outputs = execute(x); // push data to network (alimenta a la red neuronal con el dato por defecto)
 
