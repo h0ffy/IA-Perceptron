@@ -1,12 +1,36 @@
 #include "perceptron.h"
 #include <iostream>
+#include <cstdlib>
+#include <string>
 
+int main(int argc, char *argv[]) {
+    //neuronal_and();
+    //neuronal_or();
+    //neuronal_xor();
 
-int main() {
-    neuronal_and();
-    neuronal_or();
-    neuronal_xor();
-    neuronal_threat();
+    if(argc!=0x04) {
+        std::cerr << "Invalid arguments: paerceptron <impact> <severity> <probability>" << std::endl;
+        std::cerr << "Invalid arguments: paerceptron 0.4 0.5 0.7" << std::endl;
+        return(0x01);
+    }
+
+    try {
+        double impact = std::stod(argv[1]);
+        double severity = std::stod(argv[2]);
+        double probability = std::stod(argv[3]);
+        std::cout << "Impact: " << impact << std::endl;
+        std::cout << "Severity: " << severity << std::endl;
+        std::cout << "Probability: " << probability << std::endl;
+    } catch {
+        std::cerr << "Error in arguments" << std::endl;
+        return 0x00;
+    }
+
+    std::cout << "Start test to..." << std::endl;
+    neuronal_threat(impact,severity,probability);
+
+    return(0x00);
+
 }
 
 
