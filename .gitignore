@@ -6,7 +6,9 @@
 *.lo
 *.o
 *.obj
-
+.vscode
+.vscode/
+.vscode/*
 # Precompiled Headers
 *.gch
 *.pch
