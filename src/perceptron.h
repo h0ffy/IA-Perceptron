@@ -25,7 +25,7 @@ public:
     std::vector<std::vector<double>> values;        //  Replicar estructura de network
     std::vector<std::vector<double>> d;
     double bias;
-    perceptron_multilayer(std::vector<size_t> layers, double bias); // Add constructor definition
+    perceptron_multilayer(std::vector<std::size_t> layers, double bias); // Add constructor definition
     ~perceptron_multilayer();
     double retro(std::vector<double> x, std::vector<double> y);
     std::vector<double> execute(std::vector<double> weights); // Fix function signature
