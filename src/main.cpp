@@ -1,13 +1,9 @@
 #include "perceptron.h"
-#include <iostream>
+#include <iostream> 
 #include <cstdlib>
 #include <string>
-#include <ctime>   
-#include "perceptron.h"
-#include <iostream>  // Add this
-#include <cstdlib>
-#include <string>
-#include <ctime>     // Add this
+#include <ctime>
+
 
 int main(int argc, char *argv[]) {
     //neuronal_and();
@@ -43,7 +39,7 @@ int neuronal_threat(double impact, double severity, double probability) {
     srand(time(NULL));
     rand();
 
-    std::vector<size_t> conf;
+    std::vector<std::size_t> conf;
     conf.push_back(3); // 3 entradas (impact,probability,severity)
     conf.push_back(5); // 5 neuronas en la capa oculta que seran las que daran "inteligencia"
     conf.push_back(1); // posbilidad si 1 o 0 no y 0.01 -> 1.00  gradualmente de no a si
@@ -69,7 +65,7 @@ int neuronal_threat(double impact, double severity, double probability) {
 
 int neuronal_xor() {
     srand(time(NULL));
-    std::vector<size_t> conf; 
+    std::vector<std::size_t> conf; 
         conf.push_back(2);  // in layer 1
         conf.push_back(2);  // in layer 2
         conf.push_back(1);  // sigmode value
