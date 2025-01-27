@@ -3,7 +3,7 @@
 
 class perceptron {
 public:
-    perceptron(size_t n_inputs, double bias = 1.0); // Remove extra qualification
+    perceptron(std::size_t n_inputs, double bias = 1.0); // Remove extra qualification
     double execute(std::vector<double> inputs_data);
     void set_weights(std::vector<double> initial_weights);
     double activation_function(double x);
