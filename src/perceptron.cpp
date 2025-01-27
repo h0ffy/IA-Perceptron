@@ -125,7 +125,7 @@ double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y
 
     // calc of quadratic med error  ### calcula el valor cuadratico medio
     for(std::size_t i=0; i<y.size();i++) {
-        error.push_back(y[i] - salidas[i]);
+        error.push_back(y[i] - outputs[i]);
         qerror += error[i] * error[i];
     }
     qerror /= layers.back();
@@ -133,7 +133,7 @@ double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y
 
     // calc of error outputs  ### calcula los terminos de error de la salidas
     for(std::size_t i=0; i<outputs.size();i++) {
-        d.back()[i] = salidas[i] * (1-outputs[i]) * (error[i]);
+        d.back()[i] = outputs[i] * (1-outputs[i]) * (error[i]);
     }
 
     // calc of error retro ### calcula 
@@ -149,18 +149,18 @@ double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y
 
     }
 
-
+    double gora=0.0;
     // calc of delta ### calcula pesos necesarios y reducir el error con el nombre gora para calcular a la ETA
     for(std::size_t i=1;i<network.size();i++){
         for (std::size_t j=0; j<layers[i];j++) {
-            for(std::size_t k=0;k<layer[i-1];k++) {
-                double gora;
+            for(std::size_t k=0;k<layers[i-1];k++) {
+                
                 if (k==layers[i-1])
                     gora = eta * d[i][j] * bias;
                 else
                     gora = eta * d[i][j] * values[i-1][k];
 
-                red[i][j].weights += gora
+                network[i][j].set_weights += gora
             }
         }
     }
