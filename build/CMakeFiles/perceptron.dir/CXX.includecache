@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/workspaces/IA-Perceptron/src/perceptron.cpp
+perceptron.h
+/workspaces/IA-Perceptron/src/perceptron.h
+
+/workspaces/IA-Perceptron/src/perceptron.h
+iostream
+-
+cstdlib
+-
+string
+-
+ctime
+-
+cmath
+-
+vector
+-
+numeric
+-
+cstddef
+-
+
