@@ -6,7 +6,6 @@
 #include <vector>
 
 using namespace std;
-
 int neuronal_threat(double impact, double severity, double probability);
 
 int main(int argc, char *argv[]) {
