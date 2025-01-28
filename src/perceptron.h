@@ -2,13 +2,24 @@
 #include <cstdlib>
 #include <string>
 #include <ctime>
+#include <cmath>
 #include <vector>
 #include <numeric>
 #include <cstddef>  // Add this for size_t
 
+
+class StaticPerceptron {
+public:
+    static double exp_asm(double x);
+    static double sigmoide_asm(double x);
+};
+
+
+
+
 class perceptron {
 public:
-    perceptron(std::size_t n_inputs, const double bias = 1.0); // Remove extra qualification
+    perceptron(std::size_t n_inputs, double bias=1.0); // Remove extra qualification
     ~perceptron();
     double execute(std::vector<double> inputs_data);
     void set_weights(std::vector<double> initial_weights);
