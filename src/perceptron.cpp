@@ -1,8 +1,5 @@
 #include "perceptron.h"
 
-
-
-
 static double exp_asm(const double x) {
     double result;
     __asm__ (
