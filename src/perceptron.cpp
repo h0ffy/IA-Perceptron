@@ -47,8 +47,11 @@ double frand() {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 perceptron::perceptron(std::size_t n_inputs, double bias=1.0){
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
