@@ -27,6 +27,7 @@ public:
     double sigmoide(double x);
     std::vector<double> weights;
     double bias;
+    static uint64_t perceptron::rdtsc();
 };
 
 class perceptron_multilayer {
@@ -41,4 +42,6 @@ public:
     double retro(std::vector<double> x, std::vector<double> y);
     std::vector<double> execute(std::vector<double> weights); // Fix function signature
     void set_weights(std::vector<std::vector<std::vector<double>>> initial_weights);
+    void training(std::vector<std::vector<double>> x, std::vector<std::vector<double>> y, int epochs); // Training functoins
+    
 };

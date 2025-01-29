@@ -42,11 +42,27 @@ static double sigmoide_asm(const double x) {
 
 double frand() {
     return(2.0*(double)rand() / RAND_MAX - 1.0);
-    //return (double)rand() / RAND_MAX;
 }
 
 
+<<<<<<< Updated upstream
 perceptron::perceptron(std::size_t n_inputs, double bias=1.0){
+=======
+
+static uint64_t perceptron::rdtsc () {
+    uint32_t tickl , tickh ;
+    asm volatile (" rdtsc ":"=a"( tickl ) ,"=d"( tickh ) ) ;
+    return (( uint64_t ) tickh << 32) | tickl ;
+} 
+
+
+perceptron::perceptron(std::size_t n_inputs, const double bias=1.0){
+    /*bias = frand();
+    secuencie2.reserve(n_inputs);
+    for (std::size_t i = 0; i < n_inputs; i++) {
+        secuencie2.push_back(frand());
+    }*/
+>>>>>>> Stashed changes
     weights.resize(n_inputs+1);
     std::generator(weights.begin(),weights.end(),frand);
 }
@@ -226,6 +242,7 @@ double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y
     double gora;
     double eta;
     // calc of delta ### calcula pesos necesarios y reducir el error con el nombre gora para calcular a la ETA
+<<<<<<< Updated upstream
     for(std::size_t i=1;i<this->network.size();i++){
         for (std::size_t j=0; j<this->layers[i];j++) {
             for(std::size_t k=0;k<this->layers[i-1];k++) {
@@ -236,7 +253,26 @@ double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y
                     gora = eta * this->d[i][j] * this->values[i-1][k];
 
                 this->network[i][j].weights += gora
+=======
+    for(std::size_t i=1;i<network.size();i++){
+        for (std::size_t j=0; j<layers[i];j++) {
+            for(std::size_t k=0;k<layers[i-1];k++) {
+                if (k==layers[i-1])
+                    gora = eta * d[i][j] * bias;
+                else
+                    gora = eta * d[i][j] * values[i-1][k];
+                network[i][j].set_weights += gora
+>>>>>>> Stashed changes
             }
+        }
+    }
+}
+
+
+void perceptron_multilayer::training(std::vector<std::vector<double>> x, std::vector<std::vector<double>> y, int epochs){
+    for(int i=0; i<epochs; i++){
+        for(std::size_t j=0; j<x.size(); j++){
+            network.retro(x[j], y[j]);
         }
     }
 }
