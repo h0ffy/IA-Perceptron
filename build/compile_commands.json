@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/workspaces/IA-Perceptron/build",
+  "command": "/usr/bin/clang++   -I/workspaces/IA-Perceptron/src  -g   -std=gnu++11 -o CMakeFiles/perceptron.dir/src/main.cpp.o -c /workspaces/IA-Perceptron/src/main.cpp",
+  "file": "/workspaces/IA-Perceptron/src/main.cpp"
+},
+{
+  "directory": "/workspaces/IA-Perceptron/build",
+  "command": "/usr/bin/clang++   -I/workspaces/IA-Perceptron/src  -g   -std=gnu++11 -o CMakeFiles/perceptron.dir/src/perceptron.cpp.o -c /workspaces/IA-Perceptron/src/perceptron.cpp",
+  "file": "/workspaces/IA-Perceptron/src/perceptron.cpp"
+}
+]

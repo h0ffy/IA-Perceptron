@@ -1,0 +1,1 @@
+/usr/bin/clang++  -g   CMakeFiles/perceptron.dir/src/main.cpp.o CMakeFiles/perceptron.dir/src/perceptron.cpp.o  -o perceptron 

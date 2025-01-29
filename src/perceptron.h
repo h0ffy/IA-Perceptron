@@ -45,3 +45,4 @@ public:
     void training(std::vector<std::vector<double>> x, std::vector<std::vector<double>> y, int epochs); // Training functoins
     
 };
+

@@ -1,0 +1,3 @@
+/workspaces/IA-Perceptron/build/CMakeFiles/rebuild_cache.dir
+/workspaces/IA-Perceptron/build/CMakeFiles/edit_cache.dir
+/workspaces/IA-Perceptron/build/CMakeFiles/perceptron.dir

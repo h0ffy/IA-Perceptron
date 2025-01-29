@@ -40,23 +40,54 @@ static double sigmoide_asm(const double x) {
 
 
 
+
+
+static double exp_asm(const double x) {
+    double result;
+    __asm__ (
+        "fldl2e\n\t"       // Cargar log2(e) en la pila
+        "fmul %%st(1)\n\t" // st(0) = x * log2(e)
+        "fld %%st(0)\n\t"  // Duplicar st(0)
+        "frndint\n\t"      // Redondear a entero
+        "fsub %%st(1), %%st(0)\n\t" // st(0) = fracción
+        "fxch %%st(1)\n\t" // Intercambiar st(0) y st(1)
+        "f2xm1\n\t"        // Calcular 2^(st(0)) - 1
+        "fld1\n\t"         // Cargar 1.0
+        "faddp\n\t"        // Añadir 1, st(0) = 2^(fracción)
+        "fscale\n\t"       // Escalar por 2^(entero)
+        "fstp %%st(1)\n\t" // Guardar resultado y limpiar la pila
+        : "=t" (result)
+        : "0" (x)
+    );
+    return result;
+}
+
+static double sigmoide_asm(const double x) {
+    double result;
+    __asm__ (
+        "movapd %[x], %%xmm0\n\t"     // Mover x a xmm0
+        "movapd %[neg_one], %%xmm1\n\t" // Mover -1.0 a xmm1
+        "mulsd %%xmm1, %%xmm0\n\t"    // xmm0 = -x
+        "call exp_asm\n\t"                // Llamar a exp_asm(-x)
+        "addsd %[one], %%xmm0\n\t"    // xmm0 = 1 + exp(-x)
+        "movapd %[one], %%xmm1\n\t"   // Mover 1.0 a xmm1
+        "divsd %%xmm0, %%xmm1\n\t"    // xmm1 = 1 / (1 + exp(-x))
+        "movapd %%xmm1, %[result]\n\t" // Mover resultado a la variable result
+        : [result] "=m" (result)
+        : [x] "m" (x), [one] "m" (1.0), [neg_one] "m" (-1.0)
+    );
+    return result;
+}
+
+
+
+
 double frand() {
     return(2.0*(double)rand() / RAND_MAX - 1.0);
 }
 
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-perceptron::perceptron(std::size_t n_inputs, double bias=1.0){
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+//perceptron::perceptron(std::size_t n_inputs, double bias=1.0){}
 
 static uint64_t perceptron::rdtsc () {
     uint32_t tickl , tickh ;
@@ -71,7 +102,6 @@ perceptron::perceptron(std::size_t n_inputs, const double bias=1.0){
     for (std::size_t i = 0; i < n_inputs; i++) {
         secuencie2.push_back(frand());
     }*/
->>>>>>> Stashed changes
     weights.resize(n_inputs+1);
     std::generator(weights.begin(),weights.end(),frand);
 }
@@ -251,7 +281,6 @@ double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y
     double gora;
     double eta;
     // calc of delta ### calcula pesos necesarios y reducir el error con el nombre gora para calcular a la ETA
-<<<<<<< Updated upstream
     for(std::size_t i=1;i<this->network.size();i++){
         for (std::size_t j=0; j<this->layers[i];j++) {
             for(std::size_t k=0;k<this->layers[i-1];k++) {
@@ -262,7 +291,15 @@ double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y
                     gora = eta * this->d[i][j] * this->values[i-1][k];
 
                 this->network[i][j].weights += gora
-=======
+            }
+        }
+    }
+}
+                else {
+                    gora = eta * this->d[i][j] * this->values[i-1][k];
+                }
+  
+                this->network[i][j].weights += gora
     for(std::size_t i=1;i<network.size();i++){
         for (std::size_t j=0; j<layers[i];j++) {
             for(std::size_t k=0;k<layers[i-1];k++) {
@@ -271,7 +308,6 @@ double perceptron_multilayer::retro(std::vector<double> x, std::vector<double> y
                 else
                     gora = eta * d[i][j] * values[i-1][k];
                 network[i][j].set_weights += gora
->>>>>>> Stashed changes
             }
         }
     }
