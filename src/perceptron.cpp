@@ -40,48 +40,6 @@ static double sigmoide_asm(const double x) {
 
 
 
-
-
-static double exp_asm(const double x) {
-    double result;
-    __asm__ (
-        "fldl2e\n\t"       // Cargar log2(e) en la pila
-        "fmul %%st(1)\n\t" // st(0) = x * log2(e)
-        "fld %%st(0)\n\t"  // Duplicar st(0)
-        "frndint\n\t"      // Redondear a entero
-        "fsub %%st(1), %%st(0)\n\t" // st(0) = fracción
-        "fxch %%st(1)\n\t" // Intercambiar st(0) y st(1)
-        "f2xm1\n\t"        // Calcular 2^(st(0)) - 1
-        "fld1\n\t"         // Cargar 1.0
-        "faddp\n\t"        // Añadir 1, st(0) = 2^(fracción)
-        "fscale\n\t"       // Escalar por 2^(entero)
-        "fstp %%st(1)\n\t" // Guardar resultado y limpiar la pila
-        : "=t" (result)
-        : "0" (x)
-    );
-    return result;
-}
-
-static double sigmoide_asm(const double x) {
-    double result;
-    __asm__ (
-        "movapd %[x], %%xmm0\n\t"     // Mover x a xmm0
-        "movapd %[neg_one], %%xmm1\n\t" // Mover -1.0 a xmm1
-        "mulsd %%xmm1, %%xmm0\n\t"    // xmm0 = -x
-        "call exp_asm\n\t"                // Llamar a exp_asm(-x)
-        "addsd %[one], %%xmm0\n\t"    // xmm0 = 1 + exp(-x)
-        "movapd %[one], %%xmm1\n\t"   // Mover 1.0 a xmm1
-        "divsd %%xmm0, %%xmm1\n\t"    // xmm1 = 1 / (1 + exp(-x))
-        "movapd %%xmm1, %[result]\n\t" // Mover resultado a la variable result
-        : [result] "=m" (result)
-        : [x] "m" (x), [one] "m" (1.0), [neg_one] "m" (-1.0)
-    );
-    return result;
-}
-
-
-
-
 double frand() {
     return(2.0*(double)rand() / RAND_MAX - 1.0);
 }
