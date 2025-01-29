@@ -46,8 +46,11 @@ double frand() {
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 perceptron::perceptron(std::size_t n_inputs, double bias=1.0){
 =======
+=======
+>>>>>>> Stashed changes
 
 static uint64_t perceptron::rdtsc () {
     uint32_t tickl , tickh ;
